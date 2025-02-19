@@ -1,0 +1,7 @@
+psycopg2
+sqlalchemy
+pandas
+matplotlib
+seaborn
+dvc
+mlflow
