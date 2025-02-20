@@ -1,0 +1,44 @@
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+      - preprocess.py
+      - data/raw/data.csv
+    outs:
+      - data/processed/train_data.csv
+      - data/processed/test_data.csv
+
+  analyze:
+    cmd: jupyter nbconvert --to notebook --execute analyze_data.ipynb
+    deps:
+      - analyze_data.ipynb
+      - data/processed/train_data.csv
+      - data/processed/test_data.csv
+    outs:
+      - reports/eda_report.html
+
+  train:
+    cmd: python train.py
+    deps:
+      - train.py
+      - data/processed/train_data.csv
+    params:
+      - train.rf_n_estimators
+      - train.rf_max_depth
+      - train.rf_min_samples_split
+      - train.rf_min_samples_leaf
+      - train.rf_bootstrap
+      - train.xgboost_learning_rate
+      - train.xgboost_n_estimators
+      - train.xgboost_max_depth
+      - train.xgboost_subsample
+      - train.xgboost_colsample_bytree
+      - train.logistic_max_iter
+      - train.logistic_solver
+      - train.logistic_penalty
+      - train.test_size
+      - train.random_state
+    outs:
+      - models/RandomForest.pkl
+      - models/XGBoost.pkl
+      - models/LogisticRegression.pkl

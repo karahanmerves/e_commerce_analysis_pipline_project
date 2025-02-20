@@ -1,0 +1,23 @@
+train:
+  # Random Forest parametreleri
+  rf_n_estimators: 200
+  rf_max_depth: 10
+  rf_min_samples_split: 2
+  rf_min_samples_leaf: 1
+  rf_bootstrap: True
+
+  # XGBoost parametreleri
+  xgboost_learning_rate: 0.1
+  xgboost_n_estimators: 100
+  xgboost_max_depth: 6
+  xgboost_subsample: 0.8
+  xgboost_colsample_bytree: 0.8
+
+  # Logistic Regression parametreleri
+  logistic_max_iter: 500
+  logistic_solver: "lbfgs"
+  logistic_penalty: "l2"
+
+  # Eğitim ayarları
+  test_size: 0.2
+  random_state: 42
