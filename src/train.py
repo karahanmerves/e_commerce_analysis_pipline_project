@@ -13,7 +13,7 @@ import yaml
 
 def preprocess_data():
     # Veriyi yükle
-    df = pd.read_csv("data/raw/data.csv")  # PostgreSQL'den çekilen e-commerce dataset
+    df = pd.read_csv("data/raw/sales_data.csv")  # PostgreSQL'den çekilen e-commerce dataset
     
     # Eksik verileri temizle
     df = df.dropna()
@@ -34,7 +34,7 @@ def preprocess_data():
     train_data.to_csv("data/processed/train_data.csv", index=False)
     test_data.to_csv("data/processed/test_data.csv", index=False)
     
-    print("✅ Preprocessing tamamlandı!")
+    print("Preprocessing tamamlandı!")
 
 def train_model():
     # MLflow başlat

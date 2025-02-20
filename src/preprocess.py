@@ -13,7 +13,7 @@ import yaml
 
 def preprocess_data():
     # Veriyi yükle
-    df = pd.read_csv("data/raw/data.csv")  # PostgreSQL'den çekilen e-commerce dataset
+    df = pd.read_csv("data/raw/sales_data.csv")  # PostgreSQL'den çekilen e-commerce dataset
     
     # Eksik verileri temizle
     df = df.dropna()
@@ -27,14 +27,14 @@ def preprocess_data():
     numeric_columns = df.select_dtypes(include=['int64', 'float64']).columns
     df[numeric_columns] = StandardScaler().fit_transform(df[numeric_columns])
     
-    # Train-test ayrımı
+    # Train-test ayrimi
     train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
     
     # Kaydet
     train_data.to_csv("data/processed/train_data.csv", index=False)
     test_data.to_csv("data/processed/test_data.csv", index=False)
     
-    print("✅ Preprocessing tamamlandı!")
+    print("Preprocessing tamamlandi!")
 
 def train_model():
     # MLflow başlat
@@ -70,7 +70,7 @@ def train_model():
                 "f1_score": f1_score(y, y_pred, average="weighted")
             }
             
-            # MLflow logları
+            # MLflow loglari
             mlflow.log_metrics(metrics)
             mlflow.sklearn.log_model(model, model_name)
             joblib.dump(model, f"models/{model_name}.pkl")
