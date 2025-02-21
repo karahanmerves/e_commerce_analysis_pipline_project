@@ -1,12 +1,13 @@
 stages:
   preprocess:
-    cmd: python preprocess.py
+    cmd: python src/preprocess.py
     deps:
-      - preprocess.py
-      - data/raw/data.csv
+      - src/preprocess.py
+      - data/raw/sales_data.csv
     outs:
       - data/processed/train_data.csv
       - data/processed/test_data.csv
+
 
   analyze:
     cmd: jupyter nbconvert --to notebook --execute analyze_data.ipynb
@@ -18,9 +19,9 @@ stages:
       - reports/eda_report.html
 
   train:
-    cmd: python train.py
+    cmd: python train.ipynb
     deps:
-      - train.py
+      - train.ipynb
       - data/processed/train_data.csv
     params:
       - train.rf_n_estimators

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/merve/OneDrive/Masa%C3%BCst%C3%BC/e_commerce_analysis_pipline_project/mlruns/235118883148951892/69c9b68071964df88a91c5290f0c6bd8/artifacts
+end_time: 1740067312718
+entry_point_name: ''
+experiment_id: '235118883148951892'
+lifecycle_stage: active
+run_id: 69c9b68071964df88a91c5290f0c6bd8
+run_name: XGBoost
+run_uuid: 69c9b68071964df88a91c5290f0c6bd8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1740067307223
+status: 3
+tags: []
+user_id: Merve Sena
