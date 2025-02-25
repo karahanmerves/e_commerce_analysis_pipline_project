@@ -1,4 +1,11 @@
 stages:
+  fetch_data:
+    cmd: python src/fetch_data.py
+    deps:
+      - src/fetch_data.py
+    outs:
+      - data/raw/sales_data.csv
+
   preprocess:
     cmd: python src/preprocess.py
     deps:
@@ -8,20 +15,10 @@ stages:
       - data/processed/train_data.csv
       - data/processed/test_data.csv
 
-
-  analyze:
-    cmd: jupyter nbconvert --to notebook --execute analyze_data.ipynb
-    deps:
-      - analyze_data.ipynb
-      - data/processed/train_data.csv
-      - data/processed/test_data.csv
-    outs:
-      - reports/eda_report.html
-
   train:
-    cmd: python train.ipynb
+    cmd: python src/train.py
     deps:
-      - train.ipynb
+      - src/train.py
       - data/processed/train_data.csv
     params:
       - train.rf_n_estimators
@@ -37,9 +34,20 @@ stages:
       - train.logistic_max_iter
       - train.logistic_solver
       - train.logistic_penalty
-      - train.test_size
-      - train.random_state
     outs:
       - models/RandomForest.pkl
       - models/XGBoost.pkl
+      - models/LinearRegression.pkl
       - models/LogisticRegression.pkl
+
+  mlflow_tracking:
+    cmd: python src/mlflow_tracking.py
+    deps:
+      - src/mlflow_tracking.py
+      - models/RandomForest.pkl
+      - models/XGBoost.pkl
+      - models/LinearRegression.pkl
+      - models/LogisticRegression.pkl
+    outs:
+      - mlruns/
+
