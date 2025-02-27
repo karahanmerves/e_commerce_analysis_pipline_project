@@ -4,7 +4,7 @@ stages:
     deps:
       - src/fetch_data.py
     outs:
-      - data/raw/sales_data.csv
+    - data/raw/sales_data.csv
 
   preprocess:
     cmd: python src/preprocess.py
@@ -31,14 +31,10 @@ stages:
       - train.xgboost_max_depth
       - train.xgboost_subsample
       - train.xgboost_colsample_bytree
-      - train.logistic_max_iter
-      - train.logistic_solver
-      - train.logistic_penalty
     outs:
       - models/RandomForest.pkl
       - models/XGBoost.pkl
       - models/LinearRegression.pkl
-      - models/LogisticRegression.pkl
 
   mlflow_tracking:
     cmd: python src/mlflow_tracking.py
@@ -47,7 +43,6 @@ stages:
       - models/RandomForest.pkl
       - models/XGBoost.pkl
       - models/LinearRegression.pkl
-      - models/LogisticRegression.pkl
     outs:
       - mlruns/
 

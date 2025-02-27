@@ -13,11 +13,6 @@ train:
   xgboost_subsample: 0.8
   xgboost_colsample_bytree: 0.8
 
-  # Logistic Regression parametreleri
-  logistic_max_iter: 500
-  logistic_solver: "lbfgs"
-  logistic_penalty: "l2"
-
   # Eğitim ayarları
   test_size: 0.2
   random_state: 42
