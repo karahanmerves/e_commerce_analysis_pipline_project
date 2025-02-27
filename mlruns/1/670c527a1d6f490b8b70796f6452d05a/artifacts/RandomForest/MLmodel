@@ -1,4 +1,4 @@
-artifact_path: LinearRegression
+artifact_path: RandomForest
 flavors:
   python_function:
     env:
@@ -14,7 +14,7 @@ flavors:
     serialization_format: cloudpickle
     sklearn_version: 1.6.1
 mlflow_version: 2.20.2
-model_size_bytes: 711
-model_uuid: c24900a4828c4b09bb659f9f75bf78b2
-run_id: 6a766beb1e1945ab86ac9de6b0059f57
-utc_time_created: '2025-02-27 21:59:11.901626'
+model_size_bytes: 5648683
+model_uuid: 4cf8a4b188d3467f907f95840a281441
+run_id: 670c527a1d6f490b8b70796f6452d05a
+utc_time_created: '2025-02-27 22:23:26.266906'
