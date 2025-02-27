@@ -9,6 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import joblib
 import yaml
+import os
 
 # Parametreleri `params.yaml` dosyasından yükle
 with open("params.yaml", "r") as f:
@@ -40,7 +41,8 @@ def train_model(model_name):
     # Değerlendirme metrikleri
     metrics = {"mae": mean_absolute_error(y, y_pred), "rmse": np.sqrt(mean_squared_error(y, y_pred))}
         
-    
+    if not os.path.exists("models"):
+        os.makedirs("models")
     # Modeli kaydet
     joblib.dump(model, f"models/{model_name}.pkl")
     print(f"{model_name} modeli başariyla kaydedildi: models/{model_name}.pkl", flush=True)

@@ -32,3 +32,39 @@ stages:
       hash: md5
       md5: 913ba098e3ff105e722f5eac2727ba2e
       size: 58650133
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/train_data.csv
+      hash: md5
+      md5: 913ba098e3ff105e722f5eac2727ba2e
+      size: 58650133
+    - path: src/train.py
+      hash: md5
+      md5: e98cd91a3967a7a4e3bb07c987a95a71
+      size: 2327
+    params:
+      params.yaml:
+        train.rf_bootstrap: true
+        train.rf_max_depth: 10
+        train.rf_min_samples_leaf: 1
+        train.rf_min_samples_split: 2
+        train.rf_n_estimators: 200
+        train.xgboost_colsample_bytree: 0.8
+        train.xgboost_learning_rate: 0.1
+        train.xgboost_max_depth: 6
+        train.xgboost_n_estimators: 100
+        train.xgboost_subsample: 0.8
+    outs:
+    - path: models/LinearRegression.pkl
+      hash: md5
+      md5: 975634e98e2156ee02b7bcd050804c57
+      size: 1097
+    - path: models/RandomForest.pkl
+      hash: md5
+      md5: dcf788a099db7e31a625fb6147deb39a
+      size: 5661681
+    - path: models/XGBoost.pkl
+      hash: md5
+      md5: 2ea507f70ca8797b5f847bc031dae7ac
+      size: 416572

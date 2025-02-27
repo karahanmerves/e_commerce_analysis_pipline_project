@@ -8,11 +8,11 @@ mlflow.set_experiment("Ecommerce Sales Analysis")
 with open("params.yaml", "r") as f:
     params = yaml.safe_load(f)["train"]
 
-models = ["RandomForest", "XGBoost", "LinearRegression", "LogisticRegression"]
+models = ["RandomForest", "XGBoost", "LinearRegression"]
 
 for model_name in models:
     print(f"{model_name} modeli eğitiliyor...")
-    trained_model, metrics = train.train_model(model_name, params)
+    trained_model, metrics = train.train_model(model_name)
     
     if trained_model is None:
         print(f" {model_name} eğitilemedi!")
