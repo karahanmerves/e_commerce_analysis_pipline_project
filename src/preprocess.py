@@ -18,6 +18,16 @@ def preprocess_data():
     # Eksik verileri temizle
     df = df.dropna()
     
+# Aykırı değerleri IQR yöntemi ile filtrele
+    numeric_columns = df.select_dtypes(include=['int64', 'float64']).columns
+    for col in numeric_columns:
+        Q1 = df[col].quantile(0.25)
+        Q3 = df[col].quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 3 * IQR
+        upper_bound = Q3 + 3 * IQR
+        df = df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+
     # Kategorik değişkenleri encode et
     categorical_columns = df.select_dtypes(include=['object']).columns
     for col in categorical_columns:
@@ -35,3 +45,6 @@ def preprocess_data():
     test_data.to_csv("data/processed/test_data.csv", index=False)
     
     print("Preprocessing tamamlandi!")
+
+if __name__ == "__main__":
+    preprocess_data()
